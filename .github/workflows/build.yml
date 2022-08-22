@@ -22,10 +22,10 @@ jobs:
         echo ===========================
         ls
     - name: Upload NDS_Banner_Editor
-        uses: AButler/upload-release-assets@v2.0
-        with:
-          files: NDS_Banner_Editor
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: NDS_Banner_Editor
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
   macos:
     runs-on: macos-latest
     steps:
@@ -38,10 +38,10 @@ jobs:
         make
         /usr/local/opt/qt/bin/macdeployqt NDS_Banner_Editor.app/ -dmg
     - name: Upload NDS_Banner_Editor.dmg
-        uses: AButler/upload-release-assets@v2.0
-        with:
-          files: NDS_Banner_Editor.dmg
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: NDS_Banner_Editor.dmg
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
     steps:
@@ -53,8 +53,8 @@ jobs:
         qmake
         make
     - name: Upload NDS_Banner_Editor.exe
-        uses: AButler/upload-release-assets@v2.0
-        with:
-          files: NDS_Banner_Editor.exe
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: NDS_Banner_Editor.exe
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
