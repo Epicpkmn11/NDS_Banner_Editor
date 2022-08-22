@@ -22,6 +22,7 @@ jobs:
         curl -o linuxdeployqt -L https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
         chmod a+x linuxdeployqt
         ./linuxdeployqt NDS_Banner_Editor -appimage
+        ls
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
