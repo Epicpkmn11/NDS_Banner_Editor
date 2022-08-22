@@ -19,8 +19,6 @@ jobs:
       run: |
         qmake
         make
-        echo ===========================
-        ls
     - name: Upload NDS_Banner_Editor
       uses: AButler/upload-release-assets@v2.0
       with:
@@ -36,7 +34,7 @@ jobs:
       run: |
         qmake
         make
-        /usr/local/opt/qt/bin/macdeployqt NDS_Banner_Editor.app/ -dmg
+        macdeployqt NDS_Banner_Editor.app/ -dmg
     - name: Upload NDS_Banner_Editor.dmg
       uses: AButler/upload-release-assets@v2.0
       with:
