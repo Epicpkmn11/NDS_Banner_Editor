@@ -74,6 +74,7 @@ jobs:
       run: |
         qmake
         make
+        tar.exe -cf NDS_Banner_Editor.zip NDS_Banner_Editor.exe
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -83,6 +84,6 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: release/NDS_Banner_Editor.exe
+        files: release/NDS_Banner_Editor.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
