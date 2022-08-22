@@ -22,17 +22,19 @@ jobs:
         curl -o linuxdeployqt -L https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
         chmod a+x linuxdeployqt
         ./linuxdeployqt NDS_Banner_Editor -appimage
-        ls
+        mv NDS_Banner_Editor-*-x86_64.AppImage NDS_Banner_Editor-x86_64.AppImage
+        tar -cf NDS_Banner_Editor-x86_64.AppImage.tar NDS_Banner_Editor-x86_64.AppImage
+        tar -czf NDS_Banner_Editor-x86_64.AppImage.tar.gz NDS_Banner_Editor-x86_64.AppImage
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: NDS_Banner_Editor.appimage
+        path: NDS_Banner_Editor-x86_64.AppImage.tar
         name: linux
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: NDS_Banner_Editor.appimage
+        files: NDS_Banner_Editor-x86_64.AppImage.tar.gz
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   macos:
@@ -70,7 +72,7 @@ jobs:
         msystem: MINGW64
         update: true
     - name: Install Qt
-      run: pacman -Sq make mingw-w64-x86_64-qt5-static
+      run: pacman -Sq -y make mingw-w64-x86_64-qt5-static
     - name: make
       run: |
         qmake -config release
