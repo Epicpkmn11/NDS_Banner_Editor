@@ -61,6 +61,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
     - name: make
       run: |
+        call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         qmake
         make
     - name: Upload artifact
