@@ -61,7 +61,6 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-        version: '6.2.0'
         arch: 'win64_msvc2022_64'
         dir: '${{github.workspace}}/qt/'
     - name: make
