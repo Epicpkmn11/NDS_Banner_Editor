@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
     - name: make
       run: |
         qmake
@@ -30,8 +28,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
     - name: make
       run: |
         qmake
@@ -46,8 +42,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
     - name: make
       run: |
         qmake
