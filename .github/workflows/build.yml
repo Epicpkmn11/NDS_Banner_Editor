@@ -9,63 +9,15 @@ on:
     types: [published]
 
 jobs:
-  linux:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-    - name: make
-      run: |
-        qmake
-        make
-        tar -cf NDS_Banner_Editor.tar NDS_Banner_Editor
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        path: NDS_Banner_Editor.tar
-        name: linux
-    - name: Upload to release
-      uses: AButler/upload-release-assets@v2.0
-      if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
-      with:
-        files: NDS_Banner_Editor
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-  macos:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-    - name: make
-      run: |
-        qmake
-        make
-        macdeployqt NDS_Banner_Editor.app/ -dmg
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        path: NDS_Banner_Editor.dmg
-        name: macos
-    - name: Upload to release
-      uses: AButler/upload-release-assets@v2.0
-      if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
-      with:
-        files: NDS_Banner_Editor.dmg
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-      with:
-        dir: '${{github.workspace}}/qt/'
+      uses: jurplel/install-qt-action@v2
     - name: make
       shell: cmd
       run: |
-        call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         qmake
         make
     - name: Upload artifact
