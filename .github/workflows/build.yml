@@ -69,9 +69,10 @@ jobs:
     - name: make
       run: |
         qmake
-        make
+        make -f Makefile.release
         windeployqt release\NDS_Banner_Editor.exe
         dir
+        dir release
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
