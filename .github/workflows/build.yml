@@ -17,7 +17,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
     - name: make
       run: |
-        qmake
+        qmake -config release
         make
         curl -o linuxdeployqt -L https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
         chmod a+x linuxdeployqt
@@ -42,7 +42,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
     - name: make
       run: |
-        qmake
+        qmake -config release
         make
         macdeployqt NDS_Banner_Editor.app -dmg
     - name: Upload artifact
@@ -69,7 +69,7 @@ jobs:
       run: pacman -Sq make mingw-w64-x86_64-qt5-static
     - name: make
       run: |
-        qmake
+        qmake -config release
         make
         windeployqt release\NDS_Banner_Editor.exe
         dir
