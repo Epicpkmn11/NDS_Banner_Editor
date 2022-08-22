@@ -10,7 +10,7 @@ on:
 
 jobs:
   linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v3
     - name: Install Qt
@@ -60,16 +60,17 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-      with:
-        arch: win64_mingw81
     - name: Install MSYS2
       uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+    - name: Install Qt
+      run: pacman -Sq make mingw-w64-x86_64-qt5-static
     - name: make
       run: |
         qmake
-        make -f Makefile.release
+        make
         windeployqt release\NDS_Banner_Editor.exe
         dir
         dir release
