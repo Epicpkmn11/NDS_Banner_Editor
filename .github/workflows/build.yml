@@ -26,9 +26,9 @@ jobs:
       shell: cmd
       run: |
         qmake
-        make
+        nmake
         cd release
-        tar.exe -cf NDS_Banner_Editor.zip NDS_Banner_Editor.exe
+        mt.exe -manifest Hello.exe.manifest -outputresource:Hello.exe
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
