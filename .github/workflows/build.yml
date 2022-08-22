@@ -19,7 +19,7 @@ jobs:
       run: |
         qmake
         make
-        tar -cf NDS_Banner_Editor.tar
+        tar -cf NDS_Banner_Editor.tar NDS_Banner_Editor
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
