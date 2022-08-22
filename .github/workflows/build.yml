@@ -25,8 +25,8 @@ jobs:
     - name: make
       shell: cmd
       run: |
-        qmake
-        nmake
+        qmake -config release
+        make
         cd release
         mt.exe -manifest Hello.exe.manifest -outputresource:Hello.exe
     - name: Upload artifact
