@@ -58,6 +58,9 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
     - uses: actions/checkout@v3
     - name: Install MSYS2
