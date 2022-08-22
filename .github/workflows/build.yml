@@ -20,6 +20,7 @@ jobs:
         qmake
         make
         tar -cf NDS_Banner_Editor.tar NDS_Banner_Editor
+        tar -czf NDS_Banner_Editor.tar.gz NDS_Banner_Editor
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -29,7 +30,7 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: NDS_Banner_Editor
+        files: NDS_Banner_Editor.tar.gz
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   macos:
