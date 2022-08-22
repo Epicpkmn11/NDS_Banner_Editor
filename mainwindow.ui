@@ -411,7 +411,7 @@
   </action>
   <action name="actionCredits">
    <property name="text">
-    <string>&amp;This</string>
+    <string>about.&amp;This</string>
    </property>
   </action>
   <action name="actionQt">
