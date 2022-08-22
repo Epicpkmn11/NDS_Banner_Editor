@@ -19,11 +19,18 @@ jobs:
       run: |
         qmake
         make
-    - name: Upload NDS_Banner_Editor
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: NDS_Banner_Editor
+        name: linux
+    - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
+      if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
         files: NDS_Banner_Editor
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+
   macos:
     runs-on: macos-latest
     steps:
@@ -35,8 +42,14 @@ jobs:
         qmake
         make
         macdeployqt NDS_Banner_Editor.app/ -dmg
-    - name: Upload NDS_Banner_Editor.dmg
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: NDS_Banner_Editor.dmg
+        name: macos
+    - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
+      if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
         files: NDS_Banner_Editor.dmg
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -50,8 +63,14 @@ jobs:
       run: |
         qmake
         make
-    - name: Upload NDS_Banner_Editor.exe
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: NDS_Banner_Editor.exe
+        name: windows
+    - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
+      if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
         files: NDS_Banner_Editor.exe
         repo-token: ${{ secrets.GITHUB_TOKEN }}
