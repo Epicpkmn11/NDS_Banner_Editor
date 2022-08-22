@@ -19,10 +19,11 @@ jobs:
       run: |
         qmake
         make
+        tar -cf NDS_Banner_Editor.tar
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: NDS_Banner_Editor
+        path: NDS_Banner_Editor.tar
         name: linux
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
@@ -61,7 +62,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
     - name: make
       run: |
-        call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        %programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
         qmake
         make
     - name: Upload artifact
