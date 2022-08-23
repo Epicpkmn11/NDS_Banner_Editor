@@ -71,6 +71,13 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - msys2-arch: x86_64
+            package-arch: x64
+          - msys2-arch: i686
+            package-arch: x86
     defaults:
       run:
         shell: msys2 {0}
@@ -82,7 +89,7 @@ jobs:
         msystem: MINGW64
         update: true
     - name: Install Qt
-      run: pacman -S --noconfirm mingw-w64-x86_64-{gcc,make,qt5-static}
+      run: pacman -S --noconfirm mingw-w64-${{ matrix.msys2-arch }}-{gcc,make,qt5-static}
     - name: make
       run: |
         /mingw64/qt5-static/bin/qmake.exe -config release -config static
@@ -96,11 +103,11 @@ jobs:
     - name: Zip binary
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       shell: powershell
-      run: Compress-Archive -Path 'release\NDS_Banner_Editor.exe' -DestinationPath 'NDS_Banner_Editor_Win_x64.zip'
+      run: Compress-Archive -Path 'release\NDS_Banner_Editor.exe' -DestinationPath 'NDS_Banner_Editor_Win_$${{ matrix.package-arch }}.zip'
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: NDS_Banner_Editor_Win_x64.zip
+        files: NDS_Banner_Editor_Win_$${{ matrix.package-arch }}.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
