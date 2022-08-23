@@ -81,10 +81,8 @@ jobs:
         /mingw64/qt5-static/bin/qmake.exe -query QT_INSTALL_PREFIX
         /mingw64/qt5-static/bin/qmake.exe -config release -config static
         mingw32-make.exe
-        ls -l release
-        /mingw64/qt5-static/bin/windeployqt.exe release/NDS_Banner_Editor.exe
-        ls -l
-        ls -l release
+        cd release
+        tar.exe -czf NDS_Banner_Editor-x86_64.zip NDS_Banner_Editor.exe
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -94,6 +92,6 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: release/NDS_Banner_Editor.exe
+        files: release/NDS_Banner_Editor-x86_64.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
