@@ -18,13 +18,20 @@ jobs:
     - name: make
       run: |
         qmake -config release
-        make
+        make -j$(nproc)
+        make INSTALL_ROOT=appdir -j$(nproc) install
+        cp NDS_Banner_Editor.desktop appdir/usr/share/applications
+        cp icon.png appdir/usr/share/icons/hicolor/32x32/NDS_Banner_Editor.png
+
         curl -o linuxdeployqt -L https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
         chmod a+x linuxdeployqt
-        ./linuxdeployqt NDS_Banner_Editor -appimage
+
+        ./linuxdeployqt appdir/usr/share/applications/NDS_Banner_Editor.desktop -appimage
         mv NDS_Banner_Editor-*-x86_64.AppImage NDS_Banner_Editor.AppImage
         tar -cf NDS_Banner_Editor_Linux_x64.tar NDS_Banner_Editor.AppImage
         tar -czf NDS_Banner_Editor_Linux_x64.tar.gz NDS_Banner_Editor.AppImage
+    - name: ls
+      run: ls -Rl appdir
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -46,7 +53,7 @@ jobs:
     - name: make
       run: |
         qmake -config release
-        make
+        make -j(sysctl -n hw.ncpu)
         macdeployqt NDS_Banner_Editor.app -dmg
         mv NDS_Banner_Editor.dmg NDS_Banner_Editor_mac_x64.dmg
     - name: Upload artifact
