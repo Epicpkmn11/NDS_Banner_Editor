@@ -77,10 +77,10 @@ jobs:
       run: |
         /mingw64/bin/qmake.exe -config release
         make
-        dir release
+        ls -l release
         /mingw64/bin/windeployqt.exe release/NDS_Banner_Editor.exe
-        dir
-        dir release
+        ls -l
+        ls -l release
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
