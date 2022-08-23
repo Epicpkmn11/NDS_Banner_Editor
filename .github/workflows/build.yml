@@ -72,7 +72,7 @@ jobs:
       shell: msys2 {0}
       run: pacman -Sq --noconfirm make mingw-w64-x86_64-qt5-static
     - name: make
-      shell: cmd
+      shell: msys2 {0}
       run: |
         qmake -config release
         make
