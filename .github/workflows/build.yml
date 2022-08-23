@@ -72,6 +72,7 @@ jobs:
         msystem: MINGW64
         update: true
     - name: Install Qt
+      shell: msys2 {0}
       run: pacman -Sq --noconfirm make mingw-w64-x86_64-qt5-static
     - name: make
       run: |
