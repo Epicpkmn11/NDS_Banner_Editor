@@ -75,10 +75,10 @@ jobs:
       matrix:
         include:
           - msys2-arch: x86_64
-            mingw-arch: mingw32
+            mingw-arch: mingw64
             package-arch: x64
           - msys2-arch: i686
-            mingw-arch: mingw64
+            mingw-arch: mingw32
             package-arch: x86
     defaults:
       run:
