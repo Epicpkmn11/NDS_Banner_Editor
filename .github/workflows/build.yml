@@ -54,7 +54,7 @@ jobs:
     - name: make
       run: |
         qmake -config release
-        make -j(sysctl -n hw.ncpu)
+        make -j$(sysctl -n hw.ncpu)
         macdeployqt NDS_Banner_Editor.app -dmg
         mv NDS_Banner_Editor.dmg NDS_Banner_Editor_mac_x64.dmg
     - name: Upload artifact
