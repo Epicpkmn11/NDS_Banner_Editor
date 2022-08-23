@@ -35,7 +35,7 @@ FORMS += \
 
 win32 {
     RC_ICONS = icon.ico
-    CONFIG += static BUILD_STATIC STATIC_BUILD
+    CONFIG += static
 }
 
 macx {
