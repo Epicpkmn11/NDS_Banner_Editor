@@ -78,7 +78,7 @@ jobs:
       run: tree /f
     - name: make
       run: |
-        /mingw64/bin/qmake.exe -config release
+        /mingw64/bin/qmake.exe -config release -config static
         mingw32-make.exe
         ls -l release
         /mingw64/bin/windeployqt.exe release/NDS_Banner_Editor.exe
