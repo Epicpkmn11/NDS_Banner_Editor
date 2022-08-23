@@ -88,7 +88,7 @@ jobs:
     - name: Install MSYS2
       uses: msys2/setup-msys2@v2
       with:
-        msystem: msys2/setup-msys2@v2
+        msystem: ${{ matrix.mingw-arch }}
         update: true
     - name: Install Qt
       run: pacman -S --noconfirm mingw-w64-${{ matrix.msys2-arch }}-{gcc,make,qt5-static}
