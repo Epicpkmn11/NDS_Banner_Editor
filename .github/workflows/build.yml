@@ -78,10 +78,10 @@ jobs:
       run: tree /f \
     - name: make
       run: |
-        qmake6.exe -config release || true
+        /mingw64/bin/qmake.exe -config release
         make
         dir release
-        windeployqt.exe release\NDS_Banner_Editor.exe
+        /mingw64/bin/windeployqt.exe release\NDS_Banner_Editor.exe
         dir
         dir release
     - name: Upload artifact
