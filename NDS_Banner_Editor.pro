@@ -50,7 +50,7 @@ message($$[QT_INSTALL_PREFIX])
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /usr/$${TARGET}/bin
+else: unix:!android: target.path = /usr/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
