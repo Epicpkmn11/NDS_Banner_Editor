@@ -72,17 +72,17 @@ jobs:
         msystem: MINGW64
         update: true
     - name: Install Qt
-      run: pacman -S --noconfirm mingw-w64-x86_64-{gcc,make,qt5-static,qt5-tools}
+      run: pacman -S --noconfirm mingw-w64-x86_64-{gcc,make,qt5-static}
     - name: tree
       shell: cmd
       run: tree /f \
     - name: make
       run: |
-        /mingw64/bin/qmake.exe -query QT_INSTALL_PREFIX
-        /mingw64/bin/qmake.exe -config release -config static
+        /mingw64/qt5-static/bin/qmake.exe -query QT_INSTALL_PREFIX
+        /mingw64/qt5-static/bin/qmake.exe -config release -config static
         mingw32-make.exe
         ls -l release
-        /mingw64/bin/windeployqt.exe release/NDS_Banner_Editor.exe
+        /mingw64/qt5-static/bin/windeployqt.exe release/NDS_Banner_Editor.exe
         ls -l
         ls -l release
     - name: Upload artifact
