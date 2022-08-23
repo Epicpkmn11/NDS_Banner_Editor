@@ -72,7 +72,7 @@ jobs:
         msystem: MINGW64
         update: true
     - name: Install Qt
-      run: pacman -S --noconfirm make mingw-w64-x86_64-{qt5-static,gcc}
+      run: pacman -S --noconfirm make mingw-w64-x86_64-{qt5,qt5-static,gcc}
     - name: treeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       shell: cmd
       run: tree /f \
