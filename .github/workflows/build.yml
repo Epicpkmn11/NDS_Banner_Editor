@@ -73,15 +73,12 @@ jobs:
         update: true
     - name: Install Qt
       run: pacman -S --noconfirm make mingw-w64-x86_64-{qt5,qt5-static,gcc}
-    - name: treeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-      shell: cmd
-      run: tree /f \
     - name: make
       run: |
         /mingw64/bin/qmake.exe -config release
         make
         dir release
-        /mingw64/bin/windeployqt.exe release\NDS_Banner_Editor.exe
+        /mingw64/bin/windeployqt.exe release/NDS_Banner_Editor.exe
         dir
         dir release
     - name: Upload artifact
