@@ -61,9 +61,6 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
-    # defaults:
-    #   run:
-    #     shell: msys2 {0}
     steps:
     - uses: actions/checkout@v3
     - name: Install MSYS2
@@ -75,6 +72,7 @@ jobs:
       shell: msys2 {0}
       run: pacman -Sq --noconfirm make mingw-w64-x86_64-qt5-static
     - name: make
+      shell: cmd
       run: |
         qmake -config release
         make
