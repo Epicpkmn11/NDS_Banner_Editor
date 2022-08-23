@@ -75,9 +75,10 @@ jobs:
       run: pacman -S --noconfirm mingw-w64-x86_64-{gcc,make,qt5-static,qt5-tools}
     - name: tree
       shell: cmd
-      run: tree /f
+      run: tree /f \
     - name: make
       run: |
+        /mingw64/bin/qmake.exe -query QT_INSTALL_PREFIX
         /mingw64/bin/qmake.exe -config release -config static
         mingw32-make.exe
         ls -l release

@@ -35,16 +35,18 @@ FORMS += \
 
 win32 {
     RC_ICONS = icon.ico
-
-    static {
-        CONFIG += static
-        DEFINES += STATIC
-    }
 }
 
 macx {
     ICON = icon.icns
 }
+
+static {
+    CONFIG += static
+    DEFINES += STATIC
+}
+
+message($$[QT_INSTALL_PREFIX])
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
