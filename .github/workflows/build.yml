@@ -22,13 +22,13 @@ jobs:
         curl -o linuxdeployqt -L https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
         chmod a+x linuxdeployqt
         ./linuxdeployqt NDS_Banner_Editor -appimage
-        mv NDS_Banner_Editor-*-x86_64.AppImage NDS_Banner_Editor-x86_64.AppImage
-        tar -cf NDS_Banner_Editor-x86_64.AppImage.tar NDS_Banner_Editor-x86_64.AppImage
-        tar -czf NDS_Banner_Editor-x86_64.AppImage.tar.gz NDS_Banner_Editor-x86_64.AppImage
+        mv NDS_Banner_Editor-*-x86_64.AppImage NDS_Banner_Editor.AppImage
+        tar -cf NDS_Banner_Editor_Linux_x64.tar NDS_Banner_Editor.AppImage
+        tar -czf NDS_Banner_Editor_Linux_x64.tar.gz NDS_Banner_Editor.AppImage
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: NDS_Banner_Editor-x86_64.AppImage.tar
+        path: NDS_Banner_Editor_x64.AppImage.tar
         name: linux
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
@@ -48,16 +48,17 @@ jobs:
         qmake -config release
         make
         macdeployqt NDS_Banner_Editor.app -dmg
+        mv NDS_Banner_Editor.dmg NDS_Banner_Editor_mac_x64.dmg
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: NDS_Banner_Editor.dmg
+        path: NDS_Banner_Editor_Mac_x64.dmg
         name: macos
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: NDS_Banner_Editor.dmg
+        files: NDS_Banner_Editor_Mac_x64.dmg
         repo-token: ${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
@@ -73,16 +74,12 @@ jobs:
         update: true
     - name: Install Qt
       run: pacman -S --noconfirm mingw-w64-x86_64-{gcc,make,qt5-static}
-    - name: tree
-      shell: cmd
-      run: tree /f \
     - name: make
       run: |
-        /mingw64/qt5-static/bin/qmake.exe -query QT_INSTALL_PREFIX
         /mingw64/qt5-static/bin/qmake.exe -config release -config static
         mingw32-make.exe
         cd release
-        tar.exe -czf NDS_Banner_Editor-x86_64.zip NDS_Banner_Editor.exe
+        tar.exe -czf NDS_Banner_Editor_Win_x64.zip NDS_Banner_Editor.exe
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -92,6 +89,6 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: release/NDS_Banner_Editor-x86_64.zip
+        files: release/NDS_Banner_Editor_Win_x64.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
