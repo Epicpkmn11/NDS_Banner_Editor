@@ -31,7 +31,6 @@ jobs:
         ./linuxdeployqt appdir/usr/share/applications/NDS_Banner_Editor.desktop -appimage
         mv NDS_Banner_Editor-*-x86_64.AppImage NDS_Banner_Editor.AppImage
         tar -cf NDS_Banner_Editor_Linux_x64.tar NDS_Banner_Editor.AppImage
-        tar -czf NDS_Banner_Editor_Linux_x64.tar.gz NDS_Banner_Editor.AppImage
     - name: ls
       if: ${{ always() }}
       run: ls -Rl appdir
@@ -44,7 +43,7 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: NDS_Banner_Editor_Linux_x64.tar.gz
+        files: NDS_Banner_Editor_Linux_x64.tar
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   macos:
@@ -89,16 +88,19 @@ jobs:
         /mingw64/qt5-static/bin/qmake.exe -config release -config static
         mingw32-make.exe
         cd release
-        tar.exe -czf NDS_Banner_Editor_Win_x64.zip NDS_Banner_Editor.exe
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         path: release/NDS_Banner_Editor.exe
         name: windows
+    - name: Zip binary
+      if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
+      shell: powershell
+      run: Compress-Archive -Path 'release\NDS_Banner_Editor.exe' -DestinationPath 'NDS_Banner_Editor_Win_x64.zip'
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: release/NDS_Banner_Editor_Win_x64.zip
+        files: NDS_Banner_Editor_Win_x64.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
