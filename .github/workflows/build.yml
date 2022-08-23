@@ -72,13 +72,13 @@ jobs:
         msystem: MINGW64
         update: true
     - name: Install Qt
-      run: pacman -Sq --noconfirm make mingw-w64-x86_64-qt6-static
+      run: pacman -S --noconfirm make mingw-w64-x86_64-qt6-static
     - name: treeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       shell: cmd
-      run: tree \
+      run: tree /f \
     - name: make
       run: |
-        qmake.exe -config release || true
+        qmake6.exe -config release || true
         make
         dir release
         windeployqt.exe release\NDS_Banner_Editor.exe
