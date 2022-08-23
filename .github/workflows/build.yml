@@ -35,13 +35,13 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: NDS_Banner_Editor_x64.AppImage.tar
+        path: NDS_Banner_Editor_Linux_x64.tar
         name: linux
     - name: Upload to release
       uses: AButler/upload-release-assets@v2.0
       if: ${{ success() && startsWith(github.ref, 'refs/tags') }}
       with:
-        files: NDS_Banner_Editor-x86_64.AppImage.tar.gz
+        files: NDS_Banner_Editor_Linux_x64.tar.gz
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   macos:
