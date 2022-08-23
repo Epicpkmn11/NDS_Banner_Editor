@@ -3,5 +3,5 @@ Type=Application
 Name=NDS_Banner_Editor
 Comment=A tool to make Nintendo DS banners.
 Exec=NDS_Banner_Editor
-Icon=icon
+Icon=NDS_Banner_Editor
 Categories=Utility;Graphics;ImageProcessing;Qt;
