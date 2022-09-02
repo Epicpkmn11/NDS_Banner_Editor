@@ -753,11 +753,9 @@ void IconGraphicsView::mouseMoveEvent(QMouseEvent *event)
     tempFile.open();
     image.save(&tempFile, "PNG");
     tempFile.close();
+    tempFile.setAutoRemove(false);
 
     QMimeData *mime = new QMimeData;
-
-    connect(mime, SIGNAL(dataRequested(QString)), this, SLOT(createImage(QString)), Qt::DirectConnection);
-
     mime->setUrls({QUrl(tempFile.fileName())});
     drag->setMimeData(mime);
 
