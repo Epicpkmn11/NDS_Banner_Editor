@@ -7,6 +7,7 @@
 
 #include <QVector>
 #include <QMessageBox>
+#include <QBuffer>
 #include <QDrag>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -755,9 +756,6 @@ void IconGraphicsView::mouseMoveEvent(QMouseEvent *event)
     tempFile.close();
 
     QMimeData *mime = new QMimeData;
-
-    connect(mime, SIGNAL(dataRequested(QString)), this, SLOT(createImage(QString)), Qt::DirectConnection);
-
     mime->setUrls({QUrl(tempFile.fileName())});
     drag->setMimeData(mime);
 
