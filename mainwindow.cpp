@@ -753,7 +753,6 @@ void IconGraphicsView::mouseMoveEvent(QMouseEvent *event)
     tempFile.open();
     image.save(&tempFile, "PNG");
     tempFile.close();
-    tempFile.setAutoRemove(false);
 
     QMimeData *mime = new QMimeData;
     mime->setUrls({QUrl::fromLocalFile(tempFile.fileName())});
