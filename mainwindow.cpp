@@ -756,7 +756,7 @@ void IconGraphicsView::mouseMoveEvent(QMouseEvent *event)
     tempFile.setAutoRemove(false);
 
     QMimeData *mime = new QMimeData;
-    mime->setUrls({QUrl(tempFile.fileName())});
+    mime->setUrls({QUrl::fromLocalFile(tempFile.fileName())});
     drag->setMimeData(mime);
 
     drag->setPixmap(QPixmap::fromImage(image));
